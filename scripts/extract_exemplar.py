@@ -178,7 +178,7 @@ def extract_exemplar(text, category=None, source=None):
     paragraphs = hs._split_paragraphs(text)
     sentences = hs._split_sentences(clean)
     headings = extract_headings(text)
-    title = extract_title(text) or source or "untitled"
+    title = extract_title(text) or source or ""
 
     if not category:
         category = detect_category(clean, paragraphs, headings)
@@ -349,7 +349,8 @@ def main():
             continue
 
         text = path.read_text(encoding="utf-8")
-        exemplar = extract_exemplar(text, category=args.category, source=args.source)
+        source = args.source or path.stem  # fallback to filename without extension
+        exemplar = extract_exemplar(text, category=args.category, source=source)
         filepath = save_exemplar(exemplar)
 
         if args.json:
