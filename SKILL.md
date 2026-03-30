@@ -271,6 +271,7 @@ Category 映射规则：
 - H1 标题（20-28 字） + H2 结构，1500-2500 字
 - 真实素材锚定：Step 3.2 的素材分散嵌入各 H2 段落
 - **写作人格**：按 4.3 加载的人格参数写作（数据呈现方式、个人声音浓度、不确定性表达等）
+- **收尾方式**：persona 的 `closing_tendency` 仅作为倾向参考。根据文章内容和情绪弧线自行判断最自然的收尾方式（参见 writing-guide.md 收尾多样性表）。如果 history.yaml 中最近 3 篇有 `closing_type` 字段，避免使用相同的收尾类型
 - 3 层反检测规则（统计/语言/内容）在初稿阶段全部生效
 - 2-3 个编辑锚点：`<!-- ✏️ 编辑建议：在这里加一句你自己的经历/看法 -->`
 - 可选容器语法：`:::dialogue`、`:::timeline`、`:::callout`、`:::quote`
@@ -389,6 +390,7 @@ python3 {skill_dir}/toolkit/cli.py preview {markdown} --theme {theme} --no-open 
   writing_persona: "{人格名}"
   dimensions:
     - "{维度}: {选项}"
+  closing_type: "{收尾类型}"  # trailing_off/unanswered/scene_revert/abrupt_stop/anti_conclusion/image
   composite_score: {Step 5.3 的 composite_score}  # 0=人类, 100=AI
   writing_config_snapshot:  # 本次使用的关键参数（从 writing-config.yaml 提取）
     sentence_variance: {值}
